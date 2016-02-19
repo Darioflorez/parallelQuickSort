@@ -1,13 +1,19 @@
 package com.dario.parallelQuickSort;
 
+import com.dario.parallelQuickSort.models.ArrayGenerator;
+import com.dario.parallelQuickSort.models.QuickSort;
 import org.openjdk.jmh.Main;
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.results.Result;
+import org.openjdk.jmh.results.RunResult;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
 
 public class Start {
 
@@ -37,7 +43,14 @@ public class Start {
      */
     public static void main(String... args) throws IOException, RunnerException {
 
-        Options options = new OptionsBuilder()
+//        int[] intArray = ArrayGenerator.generateIntegerRandomArray(20);
+//        Log.i("=================START TEST=====================");
+//        Log.i(Arrays.toString(intArray));
+//        QuickSort.sortFloats(intArray);
+//        Log.i(Arrays.toString(intArray));
+//        Log.i("================================================");
+
+        Options opts = new OptionsBuilder()
                 .include(BenchmarkQuickSort.class.getSimpleName())
                 .threads(1)
                 .forks(1)
@@ -45,9 +58,9 @@ public class Start {
                 .shouldDoGC(true)
                 .jvmArgs("-server").build();
 
-        new Runner(options).run();
+        new Runner(opts).run();
 
-//        int [] arrayElements = ArrayGenerator.generateRandomArray(20);
+//        int [] arrayElements = ArrayGenerator.generateIntegerRandomArray(20);
 //        Log.i(Arrays.toString(arrayElements));
 //        QuickSort quickSort = new QuickSort();
 //
@@ -58,7 +71,7 @@ public class Start {
 ////          Run Garbage collector before your test start.
 //            System.gc();
 //            long startTime = System.currentTimeMillis();
-//            quickSort.sort(arrayElements);
+//            quickSort.sortFloats(arrayElements);
 //            long stopTime = System.currentTimeMillis();
 //            long elapsedTime = stopTime - startTime;
 //
