@@ -1,6 +1,8 @@
 package com.dario.parallelQuickSort.models;
 
+import java.util.Random;
 import java.util.concurrent.RecursiveAction;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by dario on 2016-02-18.
@@ -15,6 +17,7 @@ public class QuickSort extends RecursiveAction {
             return;
         }
         mArrayElements = arrayElements;
+        //shuffleArray(mArrayElements);
         int mArraySize = mArrayElements.length;
         quickSort(0, mArraySize -1);
     }
@@ -79,6 +82,18 @@ public class QuickSort extends RecursiveAction {
         float leftValue = mArrayElements[leftPointer];
         mArrayElements[leftPointer] = mArrayElements[rightPointer];
         mArrayElements[rightPointer] = leftValue;
+    }
+
+    private static void shuffleArray(float[] arr){
+        Random random = ThreadLocalRandom.current();
+        float temp;
+        int index;
+        for (int i=arr.length-1; i>0; i-- ){
+            index = random.nextInt(i+1);
+            temp = arr[index];
+            arr[index] = arr[i];
+            arr[i] = temp;
+        }
     }
 
     @Override

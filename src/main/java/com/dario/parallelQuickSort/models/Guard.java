@@ -5,10 +5,18 @@ package com.dario.parallelQuickSort.models;
  */
 public class Guard {
 
-    public static boolean isSorted(float[] list){
+    public static boolean isSorted(Float[] list){
+        for(int i = 0; i < list.length-1; i++){
+            if(list[i]>list[i+1]){
+                return false;
+            }
+        }
+        return true;
+    }
 
-        for(int i = 1; i < list.length-2; i++){
-            if(list[i-1]<list[i] && list[i] < list[i+1]){
+    public static boolean isSortedPrimitive(float[] list){
+        for(int i = 0; i < list.length-1; i++){
+            if(list[i]>list[i+1]){
                 return false;
             }
         }

@@ -14,12 +14,12 @@ public class QuickSortTest {
 
     @Before
     public void setUp() throws Exception {
-        arrayElements = ArrayGenerator.generateFloatRandomArray(100);
+        arrayElements = ArrayGenerator.generateRandomArrayF(1000000);
     }
 
     @Test
     public void testSortInteger() throws Exception {
         QuickSort.sortFloats(arrayElements);
-        assertEquals("List is sorted: ", true, Guard.isSorted(arrayElements));
+        assertEquals("List is sorted: ", true, Guard.isSortedPrimitive(arrayElements));
     }
 }

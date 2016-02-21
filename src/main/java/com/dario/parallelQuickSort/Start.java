@@ -10,6 +10,7 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
+import org.openjdk.jmh.runner.options.TimeValue;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -52,6 +53,9 @@ public class Start {
 
         Options opts = new OptionsBuilder()
                 .include(BenchmarkQuickSort.class.getSimpleName())
+                .warmupIterations(10)
+                .measurementIterations(5)
+                .measurementTime(TimeValue.milliseconds(1000))
                 .threads(1)
                 .forks(1)
                 .shouldFailOnError(true)

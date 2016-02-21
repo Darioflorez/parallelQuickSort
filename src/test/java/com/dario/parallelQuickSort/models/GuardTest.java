@@ -14,17 +14,17 @@ public class GuardTest {
 
     @Before
     public void setUp() throws Exception {
-        arrayElements = ArrayGenerator.generateFloatRandomArray(10000);
+        arrayElements = ArrayGenerator.generateRandomArrayF(1000000);
     }
 
     @Test
     public void testIsSortedWhenListIsNoSorted() throws Exception {
-        assertEquals("List no sorted: ", false, Guard.isSorted(arrayElements));
+        assertEquals("List no sorted: ", false, Guard.isSortedPrimitive(arrayElements));
     }
 
     @Test
     public void testIsSortedWhenListIsSorted() throws Exception {
         QuickSort.sortFloats(arrayElements);
-        assertEquals("List is sorted: ", true, Guard.isSorted(arrayElements));
+        assertEquals("List is sorted: ", true, Guard.isSortedPrimitive(arrayElements));
     }
 }

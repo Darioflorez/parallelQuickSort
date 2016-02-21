@@ -2,29 +2,39 @@ package com.dario.parallelQuickSort;
 
 import com.dario.parallelQuickSort.models.ArrayGenerator;
 import com.dario.parallelQuickSort.models.QuickSort;
+import com.dario.parallelQuickSort.models.QuickSortB;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by dario on 2016-02-18.
  */
 
 @State(Scope.Thread)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@BenchmarkMode(Mode.AverageTime)
 public class BenchmarkQuickSort {
 
     float[] arrayElements;
+    Float[] arr;
 
     @Setup(Level.Trial)
     public void setUp(){
         //Test to sortFloats an array of 20 integers
-        arrayElements = ArrayGenerator.generateFloatRandomArray(100);
-        Log.i("SETTING UP......");
+        arrayElements = ArrayGenerator.generateRandomArrayF(1000);
+        arr = ArrayGenerator.generateFloatRandomArray(1000);
     }
 
     @Benchmark
     public void myQuickSort(){
         QuickSort.sortFloats(arrayElements);
+    }
+
+    @Benchmark
+    public void QuickSortB(){
+        QuickSortB.sort(arr);
     }
 
     @Benchmark
